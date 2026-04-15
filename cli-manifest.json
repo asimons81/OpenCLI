@@ -2936,6 +2936,361 @@
     "sourceFile": "chatgpt/status.js"
   },
   {
+    "site": "chatgptweb",
+    "name": "image",
+    "description": "Generate images with ChatGPT web and save them locally",
+    "domain": "chatgpt.com",
+    "strategy": "cookie",
+    "browser": true,
+    "args": [
+      {
+        "name": "prompt",
+        "type": "str",
+        "required": true,
+        "positional": true,
+        "help": "Image prompt to send to ChatGPT"
+      },
+      {
+        "name": "op",
+        "type": "str",
+        "default": "/home/tony/Pictures/chatgpt",
+        "required": false,
+        "help": "Output directory"
+      },
+      {
+        "name": "sd",
+        "type": "boolean",
+        "default": false,
+        "required": false,
+        "help": "Skip download shorthand; only show ChatGPT link"
+      }
+    ],
+    "columns": [
+      "status",
+      "file",
+      "link"
+    ],
+    "timeout": 240,
+    "type": "js",
+    "modulePath": "chatgptweb/image.js",
+    "sourceFile": "chatgptweb/image.js",
+    "navigateBefore": false
+  },
+  {
+    "site": "chatllm",
+    "name": "ask",
+    "description": "Send a text message to ChatLLM and get the response. Supports any model available in ChatLLM Teams (GPT, Claude, Gemini, Grok, and more).",
+    "domain": "apps.abacus.ai",
+    "strategy": "cookie",
+    "browser": true,
+    "defaultFormat": "plain",
+    "args": [
+      {
+        "name": "prompt",
+        "type": "str",
+        "required": true,
+        "positional": true,
+        "help": "Prompt to send to ChatLLM"
+      },
+      {
+        "name": "model",
+        "type": "str",
+        "default": "",
+        "required": false,
+        "help": "Model to use, e.g. Claude Sonnet 4.6, GPT-5.4, Gemini 3.1 Pro"
+      },
+      {
+        "name": "new",
+        "type": "boolean",
+        "default": false,
+        "required": false,
+        "help": "Start a new chat before sending"
+      }
+    ],
+    "columns": [
+      "response"
+    ],
+    "timeout": 300,
+    "type": "js",
+    "modulePath": "chatllm/ask.js",
+    "sourceFile": "chatllm/ask.js"
+  },
+  {
+    "site": "chatllm",
+    "name": "image",
+    "description": "Generate images using ChatLLM Teams. Supports 25+ models including FLUX.2, GPT Image 1.5, Nano Banana 2, Imagen 4, Midjourney, and more.",
+    "domain": "apps.abacus.ai",
+    "strategy": "cookie",
+    "browser": true,
+    "defaultFormat": "plain",
+    "navigateBefore": false,
+    "args": [
+      {
+        "name": "prompt",
+        "type": "str",
+        "required": true,
+        "positional": true,
+        "help": "Image prompt — describe the image you want to generate"
+      },
+      {
+        "name": "model",
+        "type": "str",
+        "default": "GPT Image 1.5",
+        "required": false,
+        "help": "Model to use. Examples: GPT Image 1.5, Nano Banana 2, FLUX.2 [Pro], Imagen 4, Midjourney, Ideogram 3.0"
+      },
+      {
+        "name": "count",
+        "type": "int",
+        "default": 1,
+        "required": false,
+        "help": "Number of images to generate (1-4)"
+      },
+      {
+        "name": "ratio",
+        "type": "str",
+        "default": "",
+        "required": false,
+        "help": "Aspect ratio, e.g. 16:9, 9:16, 1:1, 4:3"
+      },
+      {
+        "name": "no-edit",
+        "type": "boolean",
+        "default": false,
+        "required": false,
+        "help": "Skip AI prompt enhancement"
+      },
+      {
+        "name": "output",
+        "type": "str",
+        "default": "",
+        "required": false,
+        "help": "Output directory for downloaded images"
+      },
+      {
+        "name": "no-download",
+        "type": "boolean",
+        "default": false,
+        "required": false,
+        "help": "Only generate, skip download"
+      }
+    ],
+    "columns": [
+      "status",
+      "file",
+      "model"
+    ],
+    "timeout": 300,
+    "type": "js",
+    "modulePath": "chatllm/image.js",
+    "sourceFile": "chatllm/image.js"
+  },
+  {
+    "site": "chatllm",
+    "name": "video",
+    "description": "Generate videos using ChatLLM Teams. Supports 17+ models including Kling AI v2.6, Sora 2, Veo 3.1, Seedance, Runway, Hailuo 2, and more.",
+    "domain": "apps.abacus.ai",
+    "strategy": "cookie",
+    "browser": true,
+    "defaultFormat": "plain",
+    "navigateBefore": false,
+    "args": [
+      {
+        "name": "prompt",
+        "type": "str",
+        "required": true,
+        "positional": true,
+        "help": "Video prompt — describe the video you want to generate"
+      },
+      {
+        "name": "model",
+        "type": "str",
+        "default": "Kling AI v2.6",
+        "required": false,
+        "help": "Video model. Examples: Kling AI v2.6, Sora 2, Veo 3.1, Seedance 2.0, Runway, Hailuo 2"
+      },
+      {
+        "name": "type",
+        "type": "str",
+        "default": "Text To Video",
+        "required": false,
+        "help": "Video type: Text To Video, Image To Video, Video To Video, Lip Sync"
+      },
+      {
+        "name": "ratio",
+        "type": "str",
+        "default": "16:9",
+        "required": false,
+        "help": "Aspect ratio: 16:9, 9:16, 1:1, 4:3"
+      },
+      {
+        "name": "duration",
+        "type": "int",
+        "default": 5,
+        "required": false,
+        "help": "Video duration in seconds (5, 10)"
+      },
+      {
+        "name": "image",
+        "type": "str",
+        "default": "",
+        "required": false,
+        "help": "Input image URL for Image To Video mode"
+      },
+      {
+        "name": "output",
+        "type": "str",
+        "default": "",
+        "required": false,
+        "help": "Output directory for downloaded video"
+      },
+      {
+        "name": "no-download",
+        "type": "boolean",
+        "default": false,
+        "required": false,
+        "help": "Only generate, skip download"
+      }
+    ],
+    "columns": [
+      "status",
+      "file",
+      "model"
+    ],
+    "timeout": 600,
+    "type": "js",
+    "modulePath": "chatllm/video.js",
+    "sourceFile": "chatllm/video.js"
+  },
+  {
+    "site": "chatllm",
+    "name": "speech",
+    "description": "Generate speech / audio using ChatLLM Teams. Supports Text To Speech, Speech to Text, and Speech to Speech via ElevenLabs, OpenAI, and Hume.",
+    "domain": "apps.abacus.ai",
+    "strategy": "cookie",
+    "browser": true,
+    "defaultFormat": "plain",
+    "navigateBefore": false,
+    "args": [
+      {
+        "name": "prompt",
+        "type": "str",
+        "required": false,
+        "positional": true,
+        "help": "Text to convert to speech, or path to audio file for STT/S2S"
+      },
+      {
+        "name": "type",
+        "type": "str",
+        "default": "Text To Speech",
+        "required": false,
+        "help": "Speech type: Text To Speech, Speech to Text, Speech to Speech"
+      },
+      {
+        "name": "provider",
+        "type": "str",
+        "default": "ElevenLabs",
+        "required": false,
+        "help": "Provider: ElevenLabs, OpenAI, Hume"
+      },
+      {
+        "name": "submodel",
+        "type": "str",
+        "default": "Flash",
+        "required": false,
+        "help": "ElevenLabs submodel: Flash, Multilingual, ElevenLabs V3"
+      },
+      {
+        "name": "voice",
+        "type": "str",
+        "default": "Sarah",
+        "required": false,
+        "help": "Voice name: Sarah, Laura, Charlie, George, Callum, River, Liam, Alice, Matilda, Will, Jessica, Eric, Chris, Brian, Daniel, Lily, Bill"
+      },
+      {
+        "name": "file",
+        "type": "str",
+        "default": "",
+        "required": false,
+        "help": "Path to audio file (for Speech to Text / Speech to Speech modes)"
+      },
+      {
+        "name": "output",
+        "type": "str",
+        "default": "",
+        "required": false,
+        "help": "Output file path for generated audio"
+      },
+      {
+        "name": "no-download",
+        "type": "boolean",
+        "default": false,
+        "required": false,
+        "help": "Only generate, skip download"
+      }
+    ],
+    "columns": [
+      "status",
+      "file",
+      "provider",
+      "voice"
+    ],
+    "timeout": 120,
+    "type": "js",
+    "modulePath": "chatllm/speech.js",
+    "sourceFile": "chatllm/speech.js"
+  },
+  {
+    "site": "chatllm",
+    "name": "models",
+    "description": "List all available models in ChatLLM Teams — text, image, video, and speech.",
+    "domain": "apps.abacus.ai",
+    "strategy": "cookie",
+    "browser": false,
+    "defaultFormat": "plain",
+    "args": [
+      {
+        "name": "type",
+        "type": "str",
+        "default": "all",
+        "required": false,
+        "help": "Type filter: text, image, video, speech, or all"
+      }
+    ],
+    "columns": [
+      "type",
+      "model",
+      "display"
+    ],
+    "timeout": 30,
+    "type": "js",
+    "modulePath": "chatllm/models.js",
+    "sourceFile": "chatllm/models.js"
+  },
+  {
+    "site": "chatllm",
+    "name": "interact",
+    "description": "Interactive REPL for ChatLLM Teams. Type your prompts and press Enter to send. Supports any model available in ChatLLM Teams.",
+    "domain": "apps.abacus.ai",
+    "strategy": "cookie",
+    "browser": true,
+    "defaultFormat": "plain",
+    "args": [
+      {
+        "name": "model",
+        "type": "str",
+        "default": "",
+        "required": false,
+        "help": "Default model to use, e.g. Claude Sonnet 4.6, GPT-5.4, Gemini 3.1 Pro"
+      }
+    ],
+    "columns": [],
+    "timeout": 3600,
+    "type": "js",
+    "modulePath": "chatllm/interact.js",
+    "sourceFile": "chatllm/interact.js"
+  },
+  {
     "site": "chatwise",
     "name": "ask",
     "description": "Send a prompt and wait for the AI response (send + wait + read)",
@@ -5527,7 +5882,7 @@
       {
         "name": "op",
         "type": "str",
-        "default": "/Users/jakevin/tmp/gemini-images",
+        "default": "/home/tony/tmp/gemini-images",
         "required": false,
         "help": "Output directory shorthand"
       },
@@ -6640,7 +6995,7 @@
       {
         "name": "path",
         "type": "str",
-        "default": "/Users/jakevin/Downloads/Instagram",
+        "default": "/home/tony/Downloads/Instagram",
         "required": false,
         "help": "Download directory"
       }
